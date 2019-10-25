@@ -1,5 +1,5 @@
 {
-  "name": "first-test",
+  "name": "cell-auto-shop",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,9 +7,11 @@
     "build": "vue-cli-service build",
     "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY} --spec \"cypress/integration/active/**/*\"",
     "ci:cypress-run": "start-server-and-test start http://localhost:8080 cypress:run",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "man:publish": "aws s3 sync ./dist s3://cellular-auto-shop --acl public-read --cache-control \"max-age=86400\""
   },
   "dependencies": {
+    "basic-system": "^1.0.2",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vuex": "^3.1.1"

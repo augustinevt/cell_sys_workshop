@@ -65,6 +65,7 @@
       runSystem: function() {
         this.runSystem ? this.startSystem() : this.stopSystem()
       },
+      
       rules: function() {
         const rules = (agent, grid, neighborhood) => {
           const {nw, n, ne} = neighborhood
@@ -79,15 +80,14 @@
     mounted() {
       this.provider.ctx = this.$refs['display-canvas'].getContext('2d')
 
+      const sys = new System(200, 200)
       const rules = (agent, grid, neighborhood) => {
         const {nw, n, ne} = neighborhood
         const result = `${nw.type}${n.type}${ne.type}`
         agent.type = this.rules[result]
       }
 
-      const sys = new System(200, 200)
       sys.initGrid()
-
       sys.setInGrid(((700/2)/5), 0, new Agent(1, ((700/2)/5), 0))
       sys.setAgentDisplay(this.displayAgent)
       sys.setAgentRules(rules)

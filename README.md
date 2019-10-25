@@ -1,29 +1,21 @@
-# first-test
+# BASIC SYSTEM
 
-## Project setup
-```
-yarn install
-```
+:rotating_light: **!WORK IN PROGRESS!**	:rotating_light:
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Web app used to explore classical cellular automata.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+ please checkout the [projects](https://github.com/augustinevt/cell_sys_workshop/projects) for state of development.
 
-### Run your tests
-```
-yarn run test
+ :fire:_Want to collaborate!?_:fire:
+
+ Contact me, @augustinevt!
+
+## Develop!
+
+```shell
+$ npm i
 ```
 
-### Lints and fixes files
+```shell
+$ npm start
 ```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

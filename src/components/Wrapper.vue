@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="versionTag">alpha 1.0.0</div>
     <div class="wrapper">
       <Options  @run-system="toggleSystem"  />
       <Display :runSystem="runSystemValue"  />
@@ -24,16 +25,11 @@
       runSystemValue: false,
       myBaby: 'is Fred'
     }),
-    computed: {
-
-    },
     methods: {
-
       toggleSystem(val) {
         this.runSystemValue = val
       }
     }
-
   }
 </script>
 
@@ -43,6 +39,12 @@
   .container {
     display: flex;
     justify-content: center;
+  }
+
+  .versionTag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 
   .wrapper {

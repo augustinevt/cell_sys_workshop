@@ -24,28 +24,19 @@
 
   export default {
     name: 'Options',
-    data: () => ({
-
-    }),
-
     computed: {
       ...mapState({runSystemValue: 'systemRunValue', rules: 'rules'})
     },
-
     methods: {
       ...mapActions([
         'toggleSystemRunState',
         'toggleRuleButton'
       ]),
       onRuleButtonClick(e) {
-
         this.toggleRuleButton({id: e.currentTarget.id})
       },
       onStart() {
-
         this.toggleSystemRunState()
-        // this.$emit('run-system', !this.runSystemValue)
-        // this.runSystemValue = !this.runSystemValue
       }
     }
   }
@@ -66,8 +57,8 @@
 
   .button {
     border: solid;
+    color: black;
     width: 100%;
-    /* padding: 12px; */
     font-size: 1.8rem;
   }
 
@@ -105,7 +96,6 @@
   .ruleboxes {
     display: flex;
     margin: 8px;
-    /* border: solid; */
   }
 
   h3 {
