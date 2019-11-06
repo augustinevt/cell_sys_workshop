@@ -1,16 +1,24 @@
 <template>
   <div class="container">
+    <div class="ruleName"> Rule {{ruleName}} </div>
     <div class="button" @click="onStart">
       {{runSystemValue ?  '&#10074;&#10074;' : '&#9658;'}}
     </div>
     <div class='ruleEditorWrapper'>
-      <div class="" v-for="(value, key) in rules" :key='key'>
+      <div
+        class="boxContainer"
+        v-for="(key) in buttonOrder"
+        :key="key + '-boxContainer'">
 
         <div class="ruleboxes">
-          <div class="rulebox" v-bind:class="{ 'empty' : (val === '0') }" v-for="val in key.split('')" :key='val'/>
+          <div
+            class="rulebox"
+            v-bind:class="{ 'empty' : (val === '0') }"
+            v-for="(val,j) in key.split('')"
+            :key='val + j +"-ruleBox"'/>
         </div>
-        <div class="ruleCheckWrapper" @click="onRuleButtonClick" :id='key'>
-          <div class="rulecheck" v-bind:class="{ 'empty' : value === 0 }"/>
+        <div class="ruleCheckWrapper" @click="onRuleButtonClick" :id="key">
+          <div class="rulecheck" v-bind:class="{ 'empty' : rules[key] === 0 }"/>
         </div>
 
       </div>
@@ -24,8 +32,24 @@
 
   export default {
     name: 'Options',
+    data: () => {
+      return {
+        buttonOrder: ['111', '110','101', '100', '011', '010', '001', '000']
+      }
+    },
     computed: {
-      ...mapState({runSystemValue: 'systemRunValue', rules: 'rules'})
+      ...mapState({
+        runSystemValue: 'systemRunValue',
+        rules: 'rules'
+      }),
+      ruleName: function() {
+        let binaryString = ''
+        this.buttonOrder.forEach((key) => {
+          binaryString += this.rules[key]
+        })
+
+        return parseInt(binaryString,2)
+      }
     },
     methods: {
       ...mapActions([
@@ -44,6 +68,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .ruleName {
+    padding: 20px;
+    font-weight: bold;
+  }
+
   .container {
     display: flex;
     flex-wrap: wrap;
