@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="versionTag">alpha 1.0.1</div>
+    <div class="versionTag">alpha 1.0.2</div>
     <div class="wrapper">
       <Options/>
       <Display/>
