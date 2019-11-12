@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    scale: 8,
+    columns: 88,
     rules: {
       '111': 0,
       '110': 1,

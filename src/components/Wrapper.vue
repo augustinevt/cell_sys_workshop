@@ -2,8 +2,8 @@
   <div class="container">
     <div class="versionTag">alpha 1.0.1</div>
     <div class="wrapper">
-      <Options  @run-system="toggleSystem"  />
-      <Display :runSystem="runSystemValue"  />
+      <Options/>
+      <Display/>
     </div>
   </div>
 </template>
@@ -14,21 +14,9 @@
 
   export default {
     name: 'Wrapper',
-    props: {
-      msg: String
-    },
     components: {
       Options,
       Display
-    },
-    data: () => ({
-      runSystemValue: false,
-      myBaby: 'is Fred'
-    }),
-    methods: {
-      toggleSystem(val) {
-        this.runSystemValue = val
-      }
     }
   }
 </script>
