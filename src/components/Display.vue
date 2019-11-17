@@ -12,13 +12,14 @@
 </template>
 
 <script>
-
-  import System, {Agent} from 'basic-system'
-  import {mapState} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     name: 'Display',
     methods: {
+      ...mapActions([
+        'setSystem',
+      ]),
       displayAgent(agent) {
         const {ctx} = this.provider
 
@@ -50,7 +51,7 @@
         clearInterval(this.currentInterval)
       },
 
-      updateCanvas() {
+      clearCanvas() {
         const {width, height} = this.$refs['display-canvas']
         const {ctx} = this.provider
 
@@ -79,7 +80,7 @@
 
     data () {
       return {
-        system: null,
+        // system: null,
         canvasHeight: 10,
         currentInterval: null,
         provider: {
@@ -93,7 +94,8 @@
         runSystem: 'systemRunValue',
         rules: 'rules',
         scale: 'scale',
-        columns: 'columns'
+        columns: 'columns',
+        system: 'system'
       })
     },
 
@@ -115,21 +117,7 @@
 
     mounted() {
       this.provider.ctx = this.$refs['display-canvas'].getContext('2d')
-
-      const sys = new System(this.columns, this.columns)
-      const rules = (agent, grid, neighborhood) => {
-        const {nw, n, ne} = neighborhood
-        const result = `${nw.type}${n.type}${ne.type}`
-        agent.type = this.rules[result]
-      }
-
-      sys.initGrid()
-      sys.setInGrid(Math.floor(this.columns/2), 0, new Agent(1, Math.floor(this.columns/2), 0))
-      sys.setAgentDisplay(this.displayAgent)
-      sys.setAgentRules(rules)
-      sys.display()
-
-      this.system = sys
+      this.setSystem({displayAgent: this.displayAgent, clearCanvas: this.clearCanvas})
     }
   }
 </script>

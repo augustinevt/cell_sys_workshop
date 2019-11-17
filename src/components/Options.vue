@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <div class="ruleName"> Rule {{ruleName}} </div>
-    <div class="button" @click="onStart">
-      {{runSystemValue ?  '&#10074;&#10074;' : '&#9658;'}}
-    </div>
+    <div class="buttons">
+        <div class="button" @click="onStart">
+          {{runSystemValue ?  '&#10074;&#10074;' : '&#9658;'}}
+        </div>
+        <div class="button reset" @click="onClear">
+          &#215;
+        </div>
+      </div>
     <div class='ruleEditorWrapper'>
       <div
         class="boxContainer"
@@ -40,7 +45,8 @@
     computed: {
       ...mapState({
         runSystemValue: 'systemRunValue',
-        rules: 'rules'
+        rules: 'rules',
+        system: 'system'
       }),
       ruleName: function() {
         let binaryString = ''
@@ -54,13 +60,17 @@
     methods: {
       ...mapActions([
         'toggleSystemRunState',
-        'toggleRuleButton'
+        'toggleRuleButton',
+        'resetSystem'
       ]),
       onRuleButtonClick(e) {
         this.toggleRuleButton({id: e.currentTarget.id})
       },
       onStart() {
         this.toggleSystemRunState()
+      },
+      onClear() {
+        this.resetSystem()
       }
     }
   }
@@ -73,6 +83,8 @@
     font-weight: bold;
   }
 
+
+
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -84,11 +96,24 @@
     justify-content: center;
   }
 
+  .buttons {
+    display: flex;
+    color: black;
+    width: 100%;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
   .button {
     border: solid;
     color: black;
     width: 100%;
     font-size: 1.8rem;
+  }
+
+  .reset {
+    width: 8%;
+    border-left: none;
   }
 
   .rulebox {

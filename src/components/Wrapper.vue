@@ -15,7 +15,7 @@
   export default {
     name: 'Wrapper',
     components: {
-      Options,
+      Options, 
       Display
     }
   }
@@ -36,7 +36,6 @@
   }
 
   .wrapper {
-    /* display: flex; */
     width: 700px;
   }
 
