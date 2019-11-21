@@ -11,8 +11,12 @@
     "man:publish": "aws s3 sync ./dist s3://cellular-auto-shop --acl public-read --cache-control \"max-age=86400\""
   },
   "dependencies": {
+    "airbnb": "0.0.2",
     "basic-system": "^1.0.2",
+    "cli-plugin-eslint": "0.0.1",
     "core-js": "^2.6.5",
+    "eslint-config-airbnb": "^18.0.1",
+    "save": "^2.4.0",
     "vue": "^2.6.10",
     "vuex": "^3.1.1"
   },
@@ -20,9 +24,13 @@
     "@vue/cli-plugin-babel": "^3.12.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
+    "@vue/eslint-config-airbnb": "^5.0.0",
     "babel-eslint": "^10.0.1",
     "cypress": "^3.4.1",
     "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "start-server-and-test": "^1.10.6",
     "vue-template-compiler": "^2.6.10"
@@ -33,14 +41,14 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint-config-airbnb",
+      "plugin:vue/essential"
     ],
     "rules": {
       "no-console": "off"
     },
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "vue-eslint-parser"
     }
   },
   "postcss": {

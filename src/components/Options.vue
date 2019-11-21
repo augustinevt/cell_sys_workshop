@@ -1,31 +1,46 @@
 <template>
   <div class="container">
-    <div class="ruleName"> Rule {{ruleName}} </div>
+    <div class="ruleName">
+      Rule {{ ruleName }}
+    </div>
     <div class="buttons">
-        <div class="button" @click="onStart">
-          {{runSystemValue ?  '&#10074;&#10074;' : '&#9658;'}}
-        </div>
-        <div class="button reset" @click="onClear">
-          &#215;
-        </div>
-      </div>
-    <div class='ruleEditorWrapper'>
       <div
-        class="boxContainer"
+        class="button"
+        @click="onStart"
+      >
+        {{ runSystemValue ? '&#10074;&#10074;' : '&#9658;' }}
+      </div>
+      <div
+        class="button reset"
+        @click="onClear"
+      >
+        &#215;
+      </div>
+    </div>
+    <div class="ruleEditorWrapper">
+      <div
         v-for="(key) in buttonOrder"
-        :key="key + '-boxContainer'">
-
+        :key="key + '-boxContainer'"
+        class="boxContainer"
+      >
         <div class="ruleboxes">
           <div
-            class="rulebox"
-            v-bind:class="{ 'empty' : (val === '0') }"
             v-for="(val,j) in key.split('')"
-            :key='val + j +"-ruleBox"'/>
+            :key="val + j +'-ruleBox'"
+            :class="{ 'empty' : (val === '0') }"
+            class="rulebox"
+          />
         </div>
-        <div class="ruleCheckWrapper" @click="onRuleButtonClick" :id="key">
-          <div class="rulecheck" v-bind:class="{ 'empty' : rules[key] === 0 }"/>
+        <div
+          :id="key"
+          class="ruleCheckWrapper"
+          @click="onRuleButtonClick"
+        >
+          <div
+            class="rulecheck"
+            :class="{ 'empty' : rules[key] === 0 }"
+          />
         </div>
-
       </div>
     </div>
   </div>
@@ -33,47 +48,45 @@
 
 <script>
 
-  import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
-  export default {
-    name: 'Options',
-    data: () => {
-      return {
-        buttonOrder: ['111', '110','101', '100', '011', '010', '001', '000']
-      }
-    },
-    computed: {
-      ...mapState({
-        runSystemValue: 'systemRunValue',
-        rules: 'rules',
-        system: 'system'
-      }),
-      ruleName: function() {
-        let binaryString = ''
-        this.buttonOrder.forEach((key) => {
-          binaryString += this.rules[key]
-        })
+export default {
+  name: 'Options',
+  data: () => ({
+    buttonOrder: ['111', '110', '101', '100', '011', '010', '001', '000'],
+  }),
+  computed: {
+    ...mapState({
+      runSystemValue: 'systemRunValue',
+      rules: 'rules',
+      system: 'system',
+    }),
+    ruleName: () => {
+      let binaryString = ''
+      this.buttonOrder.forEach((key) => {
+        binaryString += this.rules[key]
+      })
 
-        return parseInt(binaryString,2)
-      }
+      return parseInt(binaryString, 2)
     },
-    methods: {
-      ...mapActions([
-        'toggleSystemRunState',
-        'toggleRuleButton',
-        'resetSystem'
-      ]),
-      onRuleButtonClick(e) {
-        this.toggleRuleButton({id: e.currentTarget.id})
-      },
-      onStart() {
-        this.toggleSystemRunState()
-      },
-      onClear() {
-        this.resetSystem()
-      }
-    }
-  }
+  },
+  methods: {
+    ...mapActions([
+      'toggleSystemRunState',
+      'toggleRuleButton',
+      'resetSystem',
+    ]),
+    onRuleButtonClick(e) {
+      this.toggleRuleButton({ id: e.currentTarget.id })
+    },
+    onStart() {
+      this.toggleSystemRunState()
+    },
+    onClear() {
+      this.resetSystem()
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -82,8 +95,6 @@
     padding: 20px;
     font-weight: bold;
   }
-
-
 
   .container {
     display: flex;

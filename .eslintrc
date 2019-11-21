@@ -1,0 +1,11 @@
+{
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:vue/recommended"
+  ],
+  "rules": {
+    "semi": 0,
+    "no-param-reassign": 0,
+  }
+}

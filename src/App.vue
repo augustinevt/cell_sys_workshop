@@ -5,13 +5,14 @@
 </template>
 
 <script>
-import Wrapper from '@/components/Wrapper'
+
+import Wrapper from './components/Wrapper.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    Wrapper
-  }
+    Wrapper,
+  },
 }
 </script>
 
