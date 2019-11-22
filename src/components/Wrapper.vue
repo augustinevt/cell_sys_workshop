@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="versionTag">alpha 1.0.2</div>
+    <div class="versionTag">alpha 1.0.3</div>
     <div class="wrapper">
       <Options/>
       <Display/>
@@ -15,7 +15,7 @@
   export default {
     name: 'Wrapper',
     components: {
-      Options, 
+      Options,
       Display
     }
   }
